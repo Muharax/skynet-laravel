@@ -11,13 +11,10 @@ Route::get('/', function () {
     return view('app');
 })->name('home');
 
-Route::get('/profile', function () {
-    return view('users.profile');
-})->name('profile');
-
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
