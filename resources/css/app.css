@@ -1,3 +1,17 @@
-*{
-    color: black;
+:root[light] {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    /* Inne zmienne CSS dla trybu jasnego */
+}
+
+:root[dark] {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    /* Inne zmienne CSS dla trybu ciemnego */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    /* Inne style */
 }

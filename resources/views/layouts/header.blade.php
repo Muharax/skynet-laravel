@@ -13,6 +13,79 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funkcja do zapisywania preferencji motywu w localStorage
+            function saveThemePreference(theme) {
+                localStorage.setItem('theme', theme);
+            }
+
+            // Funkcja do wczytywania preferencji motywu z localStorage
+            function loadThemePreference() {
+                return localStorage.getItem('theme');
+            }
+
+            // Funkcja do ustawiania motywu na stronie
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+
+            // Funkcja do wykrywania preferencji motywu systemu
+            function detectSystemTheme() {
+                const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+                    .matches;
+                return prefersDarkMode ? 'dark' : 'light';
+            }
+
+            // Sprawdź preferencje motywu zapisane w localStorage
+            const savedTheme = loadThemePreference();
+            const initialTheme = savedTheme || 'auto';
+
+            // Ustaw motyw na stronie zgodnie z preferencjami
+            setTheme(initialTheme);
+
+            // Spróbuj wykryć preferencje motywu systemu
+            const systemTheme = detectSystemTheme();
+            if (initialTheme === 'auto') {
+                // Ustaw motyw na stronie zgodnie z preferencjami systemu lub domyślnie na światły
+                setTheme(systemTheme);
+            }
+
+            // Dodaj transition dla płynnej zmiany motywu do wszystkich elementów
+            document.documentElement.style.transition =
+            'background-color 0.3s ease'; // Możesz zmienić 'background-color' na inne właściwości, które chcesz animować
+
+            // Obsługa zmiany wyboru w select
+            const themeSelect = document.getElementById('theme-select');
+            if (themeSelect) {
+                // Ustaw wybrany motyw w select na podstawie wartości zapisanej w localStorage lub wykrytej preferencji systemu
+                if (savedTheme) {
+                    themeSelect.value = savedTheme;
+                } else if (initialTheme === 'auto') {
+                    themeSelect.selectedIndex = 0; // Ustaw wybraną opcję na "auto"
+                } else {
+                    themeSelect.value = initialTheme;
+                }
+
+                themeSelect.addEventListener('change', function() {
+                    const selectedTheme = themeSelect.value;
+                    setTheme(selectedTheme);
+
+                    // Jeśli wybrano opcję "auto", usuń wartość motywu z localStorage i użyj preferencji systemu
+                    if (selectedTheme === 'auto') {
+                        localStorage.removeItem('theme');
+                        const systemTheme = detectSystemTheme();
+                        setTheme(systemTheme);
+                    } else {
+                        // Zapisz preferencje motywu w localStorage
+                        saveThemePreference(selectedTheme);
+                    }
+                });
+            }
+        });
+    </script>
+
+
 </head>
 
-<body class="font-sans antialiased bg-neutral-200">
+<body class="font-sans antialiased">
