@@ -1,17 +1,43 @@
-:root[light] {
-    --background-color: #ffffff;
-    --text-color: #333333;
-    /* Inne zmienne CSS dla trybu jasnego */
-}
+:root[data-theme="light"] {
+    --background-color: #d9d9d9;
+    --text-color: #4d4d4d;
+    --primary: #a8a8a8;
+    --box-shadow:#345366;
+    --font-color-active: #c41b23;
+    --font-color-hover: #d04242;
+    --primary-color:#000000;
 
-:root[dark] {
-    --background-color: #333333;
-    --text-color: #ffffff;
-    /* Inne zmienne CSS dla trybu ciemnego */
-}
+  }
+  
+  :root[data-theme="dark"] {
+    --background-color: #0f5e7d;
+    --text-color: white; 
+    --primary: #256273;
+    --box-shadow:var(--primary);
+    --font-color-active: #25cece;
+    --font-color-hover: #43b2c1;
+    
+    --primary-color:#ffffff;
+  }
+  
 
+html{
+    transition: 300ms;
+}
 body {
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family: monospace;
     /* Inne style */
+}
+
+
+select,
+input {
+    outline: none;
+    color: var(--text-color);
+}
+select{
+    background-color: var(--background-color);
+    cursor: pointer;
 }
