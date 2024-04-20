@@ -1,92 +1,64 @@
 @include('layouts.header')
 @include('topbar')
 
-<div class="MAIN">
-    {{-- Górny pasek z kategoriami --}}
-    <div class="categories">
-        @include('shop.shop')
-      
-    </div>
+Witaj w HIMARSIE. Czuj się jak u siebie! Have nice day!
 
-    {{-- Sekcja ogłoszeń promowanych --}}
-    <div class="promoted-ads">
-        {{-- Tutaj umieść ogłoszenia promowane --}}
-        <h2>Ogłoszenia promowane</h2>
-        <div class="ads-grid">
-            {{-- Przykładowe ogłoszenia --}}
-            <div class="ad">Ogłoszenie 1</div>
-            <div class="ad">Ogłoszenie 2</div>
-            <div class="ad">Ogłoszenie 3</div>
-            <div class="ad">Ogłoszenie 4</div>
-            <div class="ad">Ogłoszenie 5</div>
-            <div class="ad">Ogłoszenie 6</div>
+<br>
+<div class="main-cont">
+    <a href="{{ route('announcement.index') }}" style="color: rgb(41, 139, 175);">
+        <div class="cvb ow2">
+            <div>
+                <img src="{{ asset('icons/announcement.svg') }}" alt="Ogłoszenie"
+                    style="width: 20px; height: 20px; margin-right: 5px;">
+            </div>
+            <div>Ogłoszenia</div>
         </div>
-    </div>
+    </a>
 
-    {{-- Sekcja ogłoszeń lokalnych --}}
-    <div class="local-ads">
-        {{-- Tutaj umieść ogłoszenia lokalne --}}
-        <h2>Ogłoszenia lokalne</h2>
-        <div class="ads-grid">
-            {{-- Przykładowe ogłoszenia --}}
-            <div class="ad">Ogłoszenie lokalne 1</div>
-            <div class="ad">Ogłoszenie lokalne 2</div>
-            <div class="ad">Ogłoszenie lokalne 3</div>
-            <div class="ad">Ogłoszenie lokalne 4</div>
-            <div class="ad">Ogłoszenie lokalne 5</div>
-            <div class="ad">Ogłoszenie lokalne 6</div>
+    <a href="#" onclick="return false;" style="color: gray; text-decoration: none; position: relative;">
+        <div class="cvb ow2">
+            <div>
+                <img src="{{ asset('icons/meldo.svg') }}" alt="Ogłoszenie"
+                    style="width: 20px; height: 20px; margin-right: 5px;">
+            </div>
+            <div>Zamelduj się</div>
         </div>
-    </div>
+        <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: no-drop;"></span>
+    </a>
+
+    <a href="#" onclick="return false;" style="color: gray; text-decoration: none; position: relative;">
+        <div class="cvb ow2">
+            <div>
+                <img src="{{ asset('icons/innovation.svg') }}" alt="Ogłoszenie"
+                    style="width: 20px; height: 20px; margin-right: 5px;">
+            </div>
+            <div>Pomysły</div>
+        </div>
+        <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: no-drop;"></span>
+    </a>
+
+
 </div>
 
 @include('layouts.footer')
 
 <style>
-    /* Style CSS dla całej strony */
-    .categories ul {
+    .main-cont>a {
+        padding: 4px;
+    }
+
+    .main-cont {
+        padding: 1rem;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around; /* Dopasowuje elementy do szerokości ekranu */
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        flex-direction: row;
     }
 
-    .categories ul li {
-        width: calc(25% - 20px); /* Szerokość każdego elementu */
-        margin: 10px;
-        text-align: center; /* Wyśrodkowanie tekstu */
-        background-color: #f0f0f0; /* Kolor tła */
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    @media screen and (max-width: 768px) {
-        .categories ul li {
-            width: calc(50% - 20px); /* Na mniejszych ekranach zmniejsza się szerokość */
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .categories ul li {
-            width: calc(100% - 20px); /* Na bardzo małych ekranach pełna szerokość */
-        }
-    }
-
-    .promoted-ads,
-    .local-ads {
-        margin-top: 20px; /* Odstęp między sekcjami */
-    }
-
-    .ads-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 200px szerokości, dostosowanie do szerokości ekranu */
-        grid-gap: 20px; /* Odstęp między ogłoszeniami */
-    }
-
-    .ad {
-        background-color: #f0f0f0;
-        padding: 10px;
-        border-radius: 5px;
+    .cvb {
+        width: 200px;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
     }
 </style>
